@@ -64,10 +64,15 @@ export const galleryItems = [
   },
 ];
 
-console.log(creategalleryItems(galleryItems))
+const galleryContainer = document.querySelector('.gallery');
+const cardsMurkup = creategalleryItems(galleryItems);
+
+galleryContainer.insertAdjacentHTML('beforeend', cardsMurkup)
+
+
 
 function creategalleryItems(images) {
-  const markup = galleryItems.map(({preview, original, description}) => {
+  return galleryItems.map(({preview, original, description}) => {
     return ` 
     <div class="gallery__item">
         <a class="gallery__link" href="${original}">
@@ -79,10 +84,10 @@ function creategalleryItems(images) {
           />
       </a>
     </div>
-
-  `;
-  });
-  console.log(markup[0])
+    `;
+  })
+  .join('');
+ 
 }
 
 
