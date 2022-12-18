@@ -69,6 +69,8 @@ const cardsMurkup = creategalleryItems(galleryItems);
 
 galleryContainer.insertAdjacentHTML('beforeend', cardsMurkup)
 
+galleryContainer.addEventListener('click', onGalleryContainerClick)
+
 
 
 function creategalleryItems(images) {
@@ -89,5 +91,21 @@ function creategalleryItems(images) {
   .join('');
  
 }
+
+function onGalleryContainerClick(evt) {
+  evt.preventDefault();
+  if (evt.target.nodeName !== "IMG"){
+    return
+  }
+
+  const urlLargeImage = evt.target.getAttribute("data-source");
+  const instance = basicLightbox.create(
+    `
+      <img src = "${urlLargeImage}">
+    `
+  )
+  instance.show()
+}
+
 
 
