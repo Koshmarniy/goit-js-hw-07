@@ -6,46 +6,42 @@ const cardsMurkup = creategalleryItems(galleryItems);
 
 galleryContainer.insertAdjacentHTML('beforeend', cardsMurkup)
 
-// galleryContainer.addEventListener('click', onGalleryContainerClick)
+galleryContainer.addEventListener('click', onGalleryContainerClick)
 
 
 
 function creategalleryItems(images) {
   return galleryItems.map(({preview, original, description}) => {
     return ` 
-    <div class="gallery__item">
-        <a class="gallery__item" href="${original}">
+        <li>
+            <a class="gallery__item" 
+            href="${original}">
             <img 
             class="gallery__image" 
             src="${preview}" 
             alt="${description}" />
-        </a>
-
-    </div>
+            </a>
+        </li>
+    
     `;
   })
   .join('');
  
 }
 
-// function onGalleryContainerClick(evt) {
-//   evt.preventDefault();
-//   if (evt.target.nodeName !== "IMG"){
-//     return
-//   }
+function onGalleryContainerClick(evt) {
+  evt.preventDefault();
+  if (evt.target.nodeName !== "IMG"){
+    return
+  }
 
-//   const urlLargeImage = evt.target.getAttribute("data-source");
+  const urlLargeImage = evt.target.getAttribute("data-source");
   
-//   const instance = simplelightbox.create(
-//     `
-//       <img src = "${urlLargeImage}">
-//     `
-//   )
-//   instance.show()
-// }
-
-
-
+  let gallery = new SimpleLightbox('.gallery a');
+  gallery.on('show.simplelightbox', function () {
+      // do something…
+  });
+}
 
 
 console.log(galleryItems);
