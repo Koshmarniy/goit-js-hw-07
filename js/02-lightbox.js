@@ -7,9 +7,6 @@ const cardsMurkup = creategalleryItems(galleryItems);
 galleryContainer.insertAdjacentHTML('beforeend', cardsMurkup)
 
 
-
-
-
 function creategalleryItems(images) {
   return galleryItems.map(({preview, original, description}) => {
     return ` 
@@ -28,8 +25,7 @@ function creategalleryItems(images) {
   .join('');
  
 }
-let gallery = new SimpleLightbox('.gallery a');
-
+let gallery = new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay:250,});
 
 
 console.log(galleryItems);
